@@ -99,7 +99,7 @@ import hull from 'hull.js'; // Import the hull library
 
 const defaultMapContainerStyle = {
   width: '100%',
-  height: '100vh',
+  height: '100%',
   borderRadius: '15px 0px 0px 15px',
 };
 
@@ -131,7 +131,7 @@ const MapComponent = ({ currentPosition, onClick, markers }) => {
 
   console.log(polygonPaths, 'polygon');
   return (
-    <div className='w-[50%] absolute right-0'>
+    <div className='w-full h-full'>
       <GoogleMap
         mapContainerStyle={defaultMapContainerStyle}
         center={currentPosition}

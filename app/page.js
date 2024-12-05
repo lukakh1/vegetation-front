@@ -2,12 +2,10 @@
 import { useCallback, useState } from 'react';
 import { MapProvider } from '@/providers/map-provider';
 import { MapComponent } from './components/map';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-// import { compute } from '@/lib/api-requests';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export default function Home() {
   const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
   const [coordinates, setCoordinates] = useState([]);
   const [date, setDate] = useState({ start: '', end: '' });
@@ -46,8 +44,6 @@ export default function Home() {
     setCurrentPosition();
   };
 
-  // Get a new searchParams string by merging the current
-  // searchParams with a provided key/value pair
   const createQueryString = useCallback(
     (name, value) => {
       const params = new URLSearchParams(searchParams.toString());
@@ -185,13 +181,15 @@ export default function Home() {
           Compute
         </button>
       </div>
-      <MapProvider>
-        <MapComponent
-          currentPosition={currentPosition}
-          onClick={handleMapClick}
-          markers={coordinates}
-        />
-      </MapProvider>
+      <div className='relative w-full'>
+        <MapProvider>
+          <MapComponent
+            currentPosition={currentPosition}
+            onClick={handleMapClick}
+            markers={coordinates}
+          />
+        </MapProvider>
+      </div>
     </div>
   );
 }
